@@ -11,47 +11,97 @@
 <nav th:replace="layouts :: navbar"></nav>
 <div class="container">
     <br/>
-    <form action="/save-car" th:object="${car}" method="post">
-        <input type="hidden" th:field="${car.carId}"/>
+<table class="table">
+
+
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Enter New Car Here</th>
+            </tr>
+        </thead>
+    <tbody>
+        <form action="/save-car" th:object="${car}" method="post">
+            <input type="hidden" th:field="${car.carId}"/>
+                <tr>
+                    <td>
+                        <div class="form-group row">
+                            <input type="text" placeholder="Manufacturer" th:field="${car.manufacturer}"/>
+                            <span style="color: red" th:if="${#fields.hasErrors('manufacturer')}"
+                                  th:errors="${car.manufacturer}">
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            <tr>
+                <td>
+                    <div class="form-group row">
+                        <input type="text" placeholder="Model" th:field="${car.model}"/>
+                        <span style="color: red" th:if="${#fields.hasErrors('model')}"
+                              th:errors="${car.model}">
+                        </span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group row">
+                        <input type="number" placeholder="Year" th:field="${car.year}"/>
+                        <span style="color: red" th:if="${#fields.hasErrors('year')}"
+                              th:errors="${car.year}">
+                </span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div th:if="${car.carId == 0}">
+
+                        <div class="form-group row">
+                            <select th:field="*{category}">
+                                <!--                    <select th:field="*{category}" multiple="single">-->
+                                <option th:each="category : ${allCategories}" th:value="${category.categoryId}"
+                                        th:text="${category.categoryTitle}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br/>
+                    <div class="form-group row">
+                        <textarea rows="3" type="text" placeholder="Description" th:field="${car.description}"/>
+                    </div>
+                </td>
+            </tr>
+
+            <div th:if="${car.carId == 0}">
+                <button class="btn btn-info col-2" type="submit">ENTER CAR</button>
+            </div>
+
+
+            <div th:unless="${car.carId == 0}">
+                <button class="btn btn-info col-2" type="submit">UPDATE CAR</button>
+            </div>
+
+    </form>
+
+    </tbody>
+
+</table>
+
 <!--        <input type="text" th:field="${car.category.categoryTitle}">-->
 
 
 
-        <div class="form-group row">
-            <input type="text" placeholder="Manufacturer" th:field="${car.manufacturer}"/>
-            <span style="color: red" th:if="${#fields.hasErrors('manufacturer')}"
-                  th:errors="${car.manufacturer}">
-            </span>
-        </div>
 
-        <div class="form-group row">
-            <input type="text" placeholder="Model" th:field="${car.model}"/>
-            <span style="color: red" th:if="${#fields.hasErrors('model')}"
-                  th:errors="${car.model}">
-            </span>
-        </div>
 
-        <div class="form-group row">
-            <input type="number" placeholder="Year" th:field="${car.year}"/>
-            <span style="color: red" th:if="${#fields.hasErrors('year')}"
-                  th:errors="${car.year}">
-            </span>
-        </div>
-        <div th:if="${car.carId == 0}">
 
-                <div class="form-group row">
-                    <select th:field="*{category}">
-<!--                    <select th:field="*{category}" multiple="single">-->
-                        <option th:each="category : ${allCategories}" th:value="${category.categoryId}"
-                                th:text="${category.categoryTitle}"></option>
-                    </select>
-                </div>
-        </div>
 
-        <br/>
-        <div class="form-group row">
-            <textarea rows="3" type="text" placeholder="Description" th:field="${car.description}"/>
-        </div>
+
+
+
+
 
 <!--        <div class="form-group row">-->
 <!--                    <select th:field="*{category}" multiple="multiple">-->
@@ -72,16 +122,8 @@
 
 <!--        if the id is not zero it means it is update process so show the below select option-->
 
-        <div th:if="${car.carId == 0}">
-            <button class="btn btn-info col-2" type="submit">ENTER CAR</button>
-        </div>
 
 
-        <div th:unless="${car.carId == 0}">
-            <button class="btn btn-info col-2" type="submit">UPDATE CAR</button>
-        </div>
-
-    </form>
 </div>
 
 
