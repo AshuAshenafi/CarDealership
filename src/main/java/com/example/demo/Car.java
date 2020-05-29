@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 public class Car {
@@ -9,9 +10,20 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long carId;
 
+    @NotBlank(message = "Must give Manufacturer!")
+    @Size(min=2, max=50)
     private String manufacturer;
+
+    @NotBlank(message="Must give model!")
+    @Size(min=2, max=50)
     private String model;
+
+    @NotNull
+    @Min(1800)
+    @Max(2040)
     private int year;
+
+    @NotBlank(message="Must give description!")
     private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)

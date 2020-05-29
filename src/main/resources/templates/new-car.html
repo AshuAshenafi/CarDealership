@@ -18,16 +18,26 @@
 
 
         <div class="form-group row">
-            <input type="text" placeholder="Manufacturer" th:field="${car.manufacturer}">
+            <input type="text" placeholder="Manufacturer" th:field="${car.manufacturer}"/>
+            <span style="color: red" th:if="${#fields.hasErrors('manufacturer')}"
+                  th:errors="${car.manufacturer}">
+            </span>
         </div>
 
         <div class="form-group row">
-            <input type="text" placeholder="Model" th:field="${car.model}">
+            <input type="text" placeholder="Model" th:field="${car.model}"/>
+            <span style="color: red" th:if="${#fields.hasErrors('model')}"
+                  th:errors="${car.model}">
+            </span>
         </div>
 
         <div class="form-group row">
-            <input type="number" placeholder="Year" th:field="${car.year}">
+            <input type="number" placeholder="Year" th:field="${car.year}"/>
+            <span style="color: red" th:if="${#fields.hasErrors('year')}"
+                  th:errors="${car.year}">
+            </span>
         </div>
+        <div th:if="${car.carId == 0}">
 
                 <div class="form-group row">
                     <select th:field="*{category}">
@@ -36,6 +46,7 @@
                                 th:text="${category.categoryTitle}"></option>
                     </select>
                 </div>
+        </div>
 
         <br/>
         <div class="form-group row">
@@ -53,17 +64,22 @@
 
 
 
+<!--        <div th:unless="${car.carId == 0}">-->
+<!--            -->
+<!--        </div>-->
+
+
 
 <!--        if the id is not zero it means it is update process so show the below select option-->
 
-<!--        <div th:if="${car.carId == 0}">-->
-            <button class="btn btn-info col-2" type="submit">Enter Car</button>
-<!--        </div>-->
+        <div th:if="${car.carId == 0}">
+            <button class="btn btn-info col-2" type="submit">ENTER CAR</button>
+        </div>
 
 
-<!--        <div th:unless="${car.carId == 0}">-->
-<!--            <button class="btn btn-info col-2" type="submit">Update Car</button>-->
-<!--        </div>-->
+        <div th:unless="${car.carId == 0}">
+            <button class="btn btn-info col-2" type="submit">UPDATE CAR</button>
+        </div>
 
     </form>
 </div>

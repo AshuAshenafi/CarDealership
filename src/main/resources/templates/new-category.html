@@ -28,6 +28,9 @@
                 <th>
                     <div class="form-group row">
                         Title: <input type="text" th:field="*{categoryTitle}" placeholder="Category title" style="width: 100%"/><br/>
+                            <span style="color: red" th:if="${#fields.hasErrors('categoryTitle')}"
+                                  th:errors="${category.categoryTitle}">
+                            </span>
                     </div>
 
                 </th>
@@ -35,11 +38,23 @@
             <br/>
             <tr>
                 <th>
-                    <div class="form-group row">
-                        <br/>
-                        <button class="btn btn-info col-2" type="submit">Enter Category</button>
-                        <br/>
+                    <div th:if="${category.categoryId == 0}">
+                        <div class="form-group row">
+                            <br/>
+                            <button class="btn btn-info col-2" type="submit">Enter Category</button>
+                            <br/>
+                        </div>
                     </div>
+
+                    <div th:unless="${category.categoryId == 0}">
+                        <div class="form-group row">
+                            <br/>
+                            <button class="btn btn-info col-2" type="submit">Update Category</button>
+                            <br/>
+                        </div>
+                    </div>
+
+
 
                 </th>
             </tr>

@@ -1,6 +1,8 @@
 package com.example.demo;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -10,6 +12,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long categoryId;
 
+    @NotBlank(message="Must have proper title!")
+    @Size(min=2, max=50)
     private String categoryTitle;
 
     @OneToMany(mappedBy = "category")

@@ -3,11 +3,13 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.Set;
 
 @Controller
@@ -43,7 +45,10 @@ public class HomeController {
     }
 
     @PostMapping("/save-car")
-    public String createCar(Model model, Car car) {
+    public String createCar(Model model, @Valid Car car, Errors errors) {
+        if(errors.hasErrors()){
+            return "/new-car";
+        }
         carRepository.save(car);
         return "redirect:/new-car";
     }
@@ -89,7 +94,10 @@ public class HomeController {
     }
 
     @PostMapping("/save-category")
-    public String createCategory(Model model, Category category) {
+    public String createCategory(Model model, @Valid Category category, Errors errors) {
+        if(errors.hasErrors()){
+            return "/new-category";
+        }
         categoryRepository.save(category);
         return "redirect:/new-category";
     }
