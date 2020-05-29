@@ -42,7 +42,7 @@ public class HomeController {
         return "new-car";
     }
 
-    @PostMapping("save-car")
+    @PostMapping("/save-car")
     public String createCar(Model model, Car car) {
         carRepository.save(car);
         return "redirect:/new-car";
@@ -88,7 +88,7 @@ public class HomeController {
         return "new-category";
     }
 
-    @PostMapping("save-category")
+    @PostMapping("/save-category")
     public String createCategory(Model model, Category category) {
         categoryRepository.save(category);
         return "redirect:/new-category";

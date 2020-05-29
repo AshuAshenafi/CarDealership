@@ -7,26 +7,47 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-
+<nav th:replace="layouts :: navbar"></nav>
 
 <div class="container">
     <br/>
+    <br/>
+    <br/>
 
-    <form th:action="@{/save-category}" method="post" th:object="${category}">
-        <input type="hidden" th:field="${category.categoryId}">
-        <div class="form-group row">
-            Title:<input type="text" th:field="*{categoryTitle}"/><br/>
-        </div>
+    <table class="table">
+        <form th:action="@{/save-category}" method="post" th:object="${category}">
+            <input type="hidden" th:field="${category.categoryId}">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Enter New Category here?</th>
+            </tr>
+            </thead>
+            <tbody>
+            <br/>
+            <tr>
+                <th>
+                    <div class="form-group row">
+                        Title: <input type="text" th:field="*{categoryTitle}" placeholder="Category title" style="width: 100%"/><br/>
+                    </div>
 
+                </th>
+            </tr>
+            <br/>
+            <tr>
+                <th>
+                    <div class="form-group row">
+                        <br/>
+                        <button class="btn btn-info col-2" type="submit">Enter Category</button>
+                        <br/>
+                    </div>
 
-        <br/>
-        <button class="btn btn-info col-2" type="submit">Enter Category</button>
-    </form>
+                </th>
+            </tr>
+            </tbody>
+
+        </form>
+    </table>
 </div>
-
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

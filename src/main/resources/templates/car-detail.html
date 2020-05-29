@@ -7,7 +7,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-
+<nav th:replace="layouts :: navbar"></nav>
 <div class="container">
     <br/>
     <h3>Car Detail</h3>
@@ -15,7 +15,37 @@
     <a th:href="@{/list-cars}" class="btn btn-primary btn-sm mb-3">
         BACK
     </a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Manufacturer</th>
+            <th scope="col">Model</th>
+            <th scope="col">Year</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><span th:text="${car.manufacturer}"></span></td>
+            <td><span th:text="${car.model}"></span></td>
+            <td><span th:text="${car.year}"></span></td>
+            <td><span th:text="${car.description}"></span></td>
+            <td>
+                <a th:href="@{/update-car(id=${car.carId})}"
+                   class="btn btn-success btn-sm">
+                    UPDATE
+                </a>
+                <a th:href="@{/delete-car(id=${car.carId})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if(!(confirm('Are you sure you want to delete this Car?'))) return false">
+                    DELETE
+                </a>
+            </td>
 
+        </tr>
+    </tbody>
+</table>
 
 
 
@@ -23,19 +53,19 @@
 
 <!--///////////////////////////////////////-->
 
-<h1>This is detail page</h1>
+<!--<h1>This is detail page</h1>-->
 
-<div class="container">
-    <a href="/list-cars">Back to Cars</a><br/>
-    <br>
-    Manufacturer : <span th:text="${car.manufacturer}"></span><br/>
-    Model : <span th:text="${car.model}"></span><br/>
-    Year : <span th:text="${car.year}"></span><br/>
+<!--<div class="container">-->
+<!--    <a href="/list-cars">Back to Cars</a><br/>-->
+<!--    <br>-->
+<!--    Manufacturer : <span th:text="${car.manufacturer}"></span><br/>-->
+<!--    Model : <span th:text="${car.model}"></span><br/>-->
+<!--    Year : <span th:text="${car.year}"></span><br/>-->
 
-    Description : <span th:text="${car.description}"></span><br/>
+<!--    Description : <span th:text="${car.description}"></span><br/>-->
 
-    <!--    <a th:href="@{/delete/{id}(id=${movies.movieId})}">Delete this Movie</a></div>-->
-</div>
+<!--    &lt;!&ndash;    <a th:href="@{/delete/{id}(id=${movies.movieId})}">Delete this Movie</a></div>&ndash;&gt;-->
+<!--</div>-->
 
 
 
