@@ -2,30 +2,40 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>newCategory</title>
+    <title>bootstrap</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 
-
 <div class="container">
     <br/>
+    <h3>Car Detail</h3>
+<!--    DETELET THIS AFTER NAVBAR-->
+    <a th:href="@{/list-cars}" class="btn btn-primary btn-sm mb-3">
+        BACK
+    </a>
 
-    <form th:action="@{/save-category}" method="post" th:object="${category}">
-        <input type="hidden" th:field="${category.categoryId}">
-        <div class="form-group row">
-            Title:<input type="text" th:field="*{categoryTitle}"/><br/>
-        </div>
 
 
-        <br/>
-        <button class="btn btn-info col-2" type="submit">Enter Category</button>
-    </form>
+
 </div>
 
+<!--///////////////////////////////////////-->
 
+<h1>This is detail page</h1>
 
+<div class="container">
+    <a href="/list-cars">Back to Cars</a><br/>
+    <br>
+    Manufacturer : <span th:text="${car.manufacturer}"></span><br/>
+    Model : <span th:text="${car.model}"></span><br/>
+    Year : <span th:text="${car.year}"></span><br/>
+
+    Description : <span th:text="${car.description}"></span><br/>
+
+    <!--    <a th:href="@{/delete/{id}(id=${movies.movieId})}">Delete this Movie</a></div>-->
+</div>
 
 
 

@@ -24,15 +24,15 @@ public class DataLoader implements CommandLineRunner {
 
 
 
-        Car car1 = new Car("Toyota", "Camry", 2020);
-        Car car2 = new Car("Toyota", "Highlander", 2009);
-        Car car3 = new Car("Subaru", "Outback", 2010);
-        Car car4 = new Car("Jeep", "Wrangler", 2005);
-        Car car5 = new Car("BMW", "Wallpaper", 2020);
-        Car car6 = new Car("Toyota", "Sequola", 2010);
-        Car car7 = new Car("Jeep", "Concept", 2020);
-        Car car8 = new Car("Toyota", "Corolla", 2005);
-        Car car9 = new Car("Toyota", "RAV4", 2015);
+        Car car1 = new Car("Toyota", "Camry", 2020, "brand new car");
+        Car car2 = new Car("Toyota", "Highlander", 2009, "used car");
+        Car car3 = new Car("Subaru", "Outback", 2010, "best seller listed");
+        Car car4 = new Car("Jeep", "Wrangler", 2005, "brand new car");
+        Car car5 = new Car("BMW", "Wallpaper", 2020, "best seller listed");
+        Car car6 = new Car("Toyota", "Sequola", 2010, "brand new car");
+        Car car7 = new Car("Jeep", "Concept", 2020, "best seller listed");
+        Car car8 = new Car("Toyota", "Corolla", 2005, "brand new car");
+        Car car9 = new Car("Toyota", "RAV4", 2015, "best seller listed");
 
 
 

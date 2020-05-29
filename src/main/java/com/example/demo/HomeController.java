@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Set;
 
@@ -17,6 +18,9 @@ public class HomeController {
 
     @Autowired
     CarRepository carRepository;
+
+    @Autowired
+    DealerService dealerService;
 
     @RequestMapping("/")
     public String displayHome(Model model) {
@@ -44,11 +48,43 @@ public class HomeController {
         return "redirect:/new-car";
     }
 
+    @GetMapping("/list-cars")
+    public String displayCars(Model model) {
+        Set<Car> cars = carRepository.findAll();
+        model.addAttribute("cars", cars);
+        return "list-cars";
+    }
+
+    @GetMapping("/detail-car")
+    public String displayCarDetailForm(@RequestParam("id") long theId, Model model) {
+        Car theCar = dealerService.findByCarId(theId);
+        model.addAttribute("car", theCar);
+        return "car-detail";
+    }
+
+    @GetMapping("/update-car")
+    public String displayCarUpdateForm(@RequestParam("id") long theId, Model model) {
+        Car theCar = dealerService.findByCarId(theId);
+        model.addAttribute("car", theCar);
+        return "new-car";
+    }
+
+    @GetMapping("/delete-car")
+    public String deleteCar(@RequestParam("id") long theId, Model model) {
+        Car theCar = dealerService.findByCarId(theId);
+        dealerService.delete(theCar);
+        return "redirect:/list-cars";
+    }
+
+
     @GetMapping("/new-category")
     public String displayCategoryForm(Model model) {
         Category aCategory = new Category();
-
         model.addAttribute("category", aCategory);
+
+        Set<Car> cars = carRepository.findAll();
+        model.addAttribute("cars", cars);
+
         return "new-category";
     }
 
@@ -57,4 +93,28 @@ public class HomeController {
         categoryRepository.save(category);
         return "redirect:/new-category";
     }
+
+    @GetMapping("/list-category")
+    public String displayCategories(Model model) {
+        Set<Category> categories = categoryRepository.findAll();
+        model.addAttribute("allCategory", categories);
+        return "list-categories";
+    }
+
+    @GetMapping("/update-category")
+    public String displayCategoryUpdateForm(@RequestParam("id") long theId, Model model) {
+        Category theCategory = dealerService.findByCategoryId(theId);
+        model.addAttribute("category", theCategory);
+        return "new-category";
+    }
+
+
+
+//    @GetMapping("/delete-category")
+//    public String deleteCategory(@RequestParam("id") long theId, Model model) {
+//        dealerService.safeDelete(theId);
+////        categoryRepository.deleteById(theId);
+//        return "redirect:/list-categories";
+//    }
+
 }

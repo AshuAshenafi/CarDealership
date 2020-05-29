@@ -12,6 +12,7 @@ public class Car {
     private String manufacturer;
     private String model;
     private int year;
+    private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="category_id")
@@ -20,11 +21,12 @@ public class Car {
     public Car() {
     }
 
-    public Car(String manufacturer, String model, int year) {
+    public Car(String manufacturer, String model, int year, String description) {
         super();
         this.manufacturer = manufacturer;
         this.model = model;
         this.year = year;
+        this.description = description;
     }
 
     public long getCarId() {
@@ -57,6 +59,14 @@ public class Car {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Category getCategory() {
