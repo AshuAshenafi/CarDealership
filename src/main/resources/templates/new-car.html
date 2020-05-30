@@ -23,6 +23,7 @@
     <br/>
         <form action="/save-car" th:object="${car}" method="post">
             <input type="hidden" th:field="${car.carId}"/>
+            <input type="hidden" th:field="${car.category.categoryId}"/>
             <br/>
             <tr>
                 <td>
