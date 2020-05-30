@@ -33,7 +33,20 @@ public class Car {
     public Car() {
     }
 
-    public Car(String manufacturer, String model, int year, String description) {
+//    public Car(@NotBlank(message = "Must give Manufacturer!") @Size(min = 2, max = 50) String manufacturer,
+//               @NotBlank(message = "Must give model!") @Size(min = 2, max = 50) String model,
+//               @NotNull @Min(1800) @Max(2040) int year, @NotBlank(message = "Must give description!")
+//                       String description, Category category) {
+//        super();
+//        this.manufacturer = manufacturer;
+//        this.model = model;
+//        this.year = year;
+//        this.description = description;
+//        this.category = category;
+//    }
+
+
+        public Car(String manufacturer, String model, int year, String description) {
         super();
         this.manufacturer = manufacturer;
         this.model = model;

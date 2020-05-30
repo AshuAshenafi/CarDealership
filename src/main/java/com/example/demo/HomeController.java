@@ -116,13 +116,13 @@ public class HomeController {
         return "new-category";
     }
 
-
-
-//    @GetMapping("/delete-category")
-//    public String deleteCategory(@RequestParam("id") long theId, Model model) {
-//        dealerService.safeDelete(theId);
-////        categoryRepository.deleteById(theId);
-//        return "redirect:/list-categories";
-//    }
+    @GetMapping("/delete-category")
+    public String deleteCategory(@RequestParam("id") long theId) {
+        // delete the child cars under this category
+        dealerService.deleteCarsWithThisCategoryId(theId);
+        // delete category
+        categoryRepository.deleteById(theId);
+        return "redirect:/list-category";
+    }
 
 }

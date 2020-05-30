@@ -16,6 +16,10 @@ public class DataLoader implements CommandLineRunner {
     CarRepository carRepository;
     @Override
     public void run (String... strings) throws Exception {
+
+        Set<Car> cars = new HashSet<>();
+        Set<Category> categories = new HashSet<>();
+
         Category category = new Category();
 
         Category category1 = new Category("Sedan");

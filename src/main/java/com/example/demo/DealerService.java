@@ -24,13 +24,31 @@ public class DealerService {
         carRepository.delete(theCar);
     }
 
-//    public void safeDelete(long category_id){
-//        Category category = categoryRepository.findByCategoryId(category_id);
+//    public void safeDelete1(long category_id){
+////        Category category = categoryRepository.findByCategoryId(category_id);
+//        Category category = categoryRepository.findById(category_id).get();
 //        for(Car car : carRepository.findAll()){
-//            if(car.getCategory().getCategoryId() == (category_id)){
+//            if(car.getCategory().contains(category)){
 //
-//                car.setCategory(null);
+////                car.setCategory(null);
+//                System.out.println("From line 32 (Dealer Service) Cars in the same category are: " );
 //            }
 //        }
 //    }
+//
+    public void deleteCarsWithThisCategoryId(long categ_id) {
+
+        // get all the cars in the repository
+        for(Car car : carRepository.findAll()){
+            // get all cars whose foreign key is equal to the current category
+            if(car.getCategory().getCategoryId() == categ_id){
+//                System.out.println("car model = " + car.getModel() + ", car manufacturor = " + car.getManufacturer());
+                // delete the car whose foreign key mathces the current category
+                carRepository.delete(car);
+            }
+        }
+    }
+
+
+
 }
